@@ -23,13 +23,13 @@ class RestStore extends ChangeNotifier{
     notifyListeners();
   }
 
-  updateQuantity() {
+  updateQuantity(int index) {
     // ignore: unnecessary_statements
-    activeCafe!.qntyofItem=1;
+    activeCafe!.category![index].variety![index].quantity=1;
     notifyListeners();
   }
-  totalPrice(){
-    var total=(activeCafe!.price!*activeCafe!.qntyofItem!);
+  totalPrice(int index){
+    var total=(activeCafe!.category![index].variety![index].price*activeCafe!.category![index].variety![index].quantity);
     // ignore: unnecessary_statements
     total;
     notifyListeners();
@@ -43,99 +43,118 @@ RestStore(){
         address: "Biratnagar",
         imageProf: "asset/images/Restaurant 2.jpg",
 
-        category: ['Mo:Mo',"chicken","Coffee","Tea","Vag"],
-        items:[
-          {"Cheese Pizza ":100.0},
-          {"Veggie Pizza":100.0},
-          {"Pepperoni Pizza":100.0},
-          {"Meat Pizza":100.0},
-          {"Mixed Veg Pizza":100.0},
-          {"Chicken Pizza":100.0},
-          {"Mixed Pizza":100.0},
-        ],
-      price: 100.0, qntyofItem: 1,
+       category:
+       [
+         Category(
+             name: "Pizza",
+             variety: [
+               Variety(id: 1,name:"Cheese Pizza" ,quantity:1 ,price:150 ),
+               Variety(id: 2, name: "Veg Pizza", quantity: 1, price: 200)
+             ],
+         ),
+         Category(name: "Burger",
+             variety: [
+           Variety(id: 1,  name: "Burger", quantity: 1, price:200)
+         ]
+         )
+       ],
     ),
     RestaurantDetail(
         restaurantName: "The kFC ",
         address: "Biratnagar",
         imageProf: "asset/images/Restaurant 2.jpg",
-        category:['Mo:Mo',"chicken","Coffee","Tea","Vag"],
-        items:[
-          {"Cheese ":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-        ],
-      price: 100.0, qntyofItem: 1,
+      category:
+      [
+        Category(
+          name: "Mo:Mo",
+          variety: [
+            Variety(id: 1,name:"Cheese Pizza" ,quantity:1 ,price:150 ),
+            Variety(id: 2, name: "Veg Pizza", quantity: 1, price: 200)
+          ],
+        ),
+        Category(name: "Sandwich",
+            variety: [
+              Variety(id: 1,  name: "Burger", quantity: 1, price:200)
+            ])
+      ],
 
     ),
     RestaurantDetail(
         restaurantName: " ABC",
         address: "Biratnagar",
         imageProf: "asset/images/Restaurant 2.jpg",
-        category: ['Mo:Mo',"chicken","Coffee","Tea","Vag"],
-        items:[
-          {"Cheese ":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-        ],
-      price: 100.0, qntyofItem: 1,
+      category:
+      [
+        Category(
+          name: "Pizza",
+          variety: [
+            Variety(id: 1,name:"Cheese Pizza" ,quantity:1 ,price:150 ),
+            Variety(id: 2, name: "Veg Pizza", quantity: 1, price: 200)
+          ],
+        ),
+        Category(name: "Burger",
+            variety: [
+              Variety(id: 1,  name: "Burger", quantity: 1, price:200)
+            ])
+      ],
 
     ),
     RestaurantDetail(
         restaurantName: " ABC",
         address: "Biratnagar",
         imageProf: "asset/images/Restaurant 2.jpg",
-        category: ['Mo:Mo',"chicken","Coffee","Tea","Vag"],
-        items:[
-          {"Cheese ":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-        ],
-      price: 100.0, qntyofItem: 1,
+      category:
+      [
+        Category(
+          name: "Pizza",
+          variety: [
+            Variety(id: 1,name:"Cheese Pizza" ,quantity:1 ,price:150 ),
+            Variety(id: 2, name: "Veg Pizza", quantity: 1, price: 200)
+          ],
+        ),
+        Category(name: "Burger",
+            variety: [
+              Variety(id: 1,  name: "Burger", quantity: 1, price:200)
+            ])
+      ],
     ),
     RestaurantDetail(
         restaurantName: " The XYZ",
         address: "Biratnagar",
         imageProf: "asset/images/Restaurant 2.jpg",
-        category: ['Mo:Mo',"chicken","Coffee","Tea","Vag"],
-        items:[
-          {"Cheese ":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-        ],
-      price: 100.0, qntyofItem: 1,
+      category:
+      [
+        Category(
+          name: "Pizza",
+          variety: [
+            Variety(id: 1,name:"Cheese Pizza" ,quantity:1 ,price:150 ),
+            Variety(id: 2, name: "Veg Pizza", quantity: 1, price: 200)
+          ],
+        ),
+        Category(name: "Burger",
+            variety: [
+              Variety(id: 1,  name: "Burger", quantity: 1, price:200)
+            ])
+      ],
     ),
     RestaurantDetail(
       restaurantName: " XYz",
       address: "Biratnagar",
       imageProf: "asset/images/Restaurant 2.jpg",
-        category:['Mo:Mo',"chicken","Coffee","Tea","Vag"],
-        items:[
-          {"Cheese ":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-          {"Cheese Pizza":100.0},
-        ],
-      price: 100.0, qntyofItem: 1,
+      category:
+      [
+        Category(
+          name: "Pizza",
+          variety: [
+            Variety(id: 1,name:"Cheese Pizza" ,quantity:1 ,price:150 ),
+            Variety(id: 2, name: "Veg Pizza", quantity: 1, price: 200)
+          ],
+        ),
+        Category(name: "Burger",
+            variety: [
+              Variety(id: 1,  name: "Burger", quantity: 1, price:200)
+            ])
+      ],
     )
 
   ];

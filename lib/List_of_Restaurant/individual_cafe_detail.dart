@@ -1,4 +1,6 @@
-import 'dart:developer';
+import 'dart:core';
+
+
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,28 +11,51 @@ import 'package:yummy_bites/Colors/appColors.dart';
 import 'package:yummy_bites/List_of_Restaurant/menu_items.dart';
 import 'package:yummy_bites/Pages/cart_page.dart';
 import 'package:yummy_bites/Restaurant_Detail/restaurant_detail.dart';
+import 'package:yummy_bites/Store/myStore.dart';
 import 'package:yummy_bites/Store/restStore.dart';
+import 'package:yummy_bites/Widget/cutome_tabbar.dart';
 
+// ignore: must_be_immutable
 class IndividualCafe extends StatefulWidget {
-   IndividualCafe({Key? key, required int index}) : super(key: key);
+   IndividualCafe({Key? key }) : super(key: key);
+
+
+
+
 
   @override
   _IndividualCafeState createState() => _IndividualCafeState();
 }
 
-class _IndividualCafeState extends State<IndividualCafe> with SingleTickerProviderStateMixin {
-  TabController ? _tabController;
+class _IndividualCafeState extends State<IndividualCafe> with SingleTickerProviderStateMixin  {
 
-  @override
-  void initState() {
-    _tabController = new TabController(length: 7, vsync: this);
-    super.initState();
-  }
+   int _selectedTab=0;
+
+   void changeTab(int slct){
+     setState(() {
+       _selectedTab=slct;
+     });
+   }
+
+// @override
+//   void initState() {
+//
+//     super.initState();
+//     WidgetsBinding.instance!.addPostFrameCallback((_) {
+//       print("WidgetsBinding");
+//       changeTab(int slct){
+//         setState(() {
+//           _selectedTab=slct;
+//         });
+//       }
+//     });
+//   }
+
 
   @override
   Widget build(BuildContext context) {
     // ignore: non_constant_identifier_names
-    var restStore = Provider.of<RestStore>(context, listen: false);
+     var restStore = Provider.of<RestStore>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white.withOpacity(0.9),
         body: SafeArea(
@@ -93,88 +118,58 @@ class _IndividualCafeState extends State<IndividualCafe> with SingleTickerProvid
                         ),
                         ),
                         SizedBox(height: 10,),
-                        // Container(
-                        //   width: MediaQuery.of(context).size.width,
-                        //   height: 185,
-                        //   child: ListView.separated(
-                        //     scrollDirection: Axis.horizontal,
-                        //       shrinkWrap: true,
-                        //
-                        //       separatorBuilder: (context,index)=>SizedBox(width: 10,),
-                        //       itemCount: 6,
-                        //     itemBuilder: (context,index){
-                        //         return Container(
-                        //           width: 150,
-                        //           decoration: BoxDecoration(
-                        //             color: AppColors.blue,
-                        //             borderRadius: BorderRadius.only(
-                        //               topLeft: Radius.circular(30),
-                        //               topRight: Radius.circular(30),
-                        //               bottomRight: Radius.circular(30)
-                        //             ),
-                        //           ),
-                        //
-                        //
-                        //           child: Column(
-                        //             children: [
-                        //               ClipRRect(
-                        //
-                        //                 child: Container(
-                        //                   height: 100,
-                        //                   child: Image.asset("asset/images/coffee.jpg"),
-                        //                 ),
-                        //                 borderRadius: BorderRadius.only(
-                        //                   topLeft: Radius.circular(30),
-                        //                   topRight: Radius.circular(30),
-                        //                 ),
-                        //               ),
-                        //             ],
-                        //           )
-                        //         );
-                        //     },
-                        //   )
-                        // )
-                        SizedBox(height: 50,
-                          child:TabBar(
-                            isScrollable: true,
 
-                            unselectedLabelColor: Colors.red,
-                            controller: _tabController,
-                            tabs:[
-                                  Tab(child: Text("Pizza",style: Theme.of(context).textTheme.headline5,),),
-                                  Tab(child: Text("Burger",style: Theme.of(context).textTheme.headline5,),),
-                                  Tab(child: Text("Chicken",style: Theme.of(context).textTheme.headline5,),),
-                                  Tab(child: Text("Veg",style: Theme.of(context).textTheme.headline5,),),
-                                  Tab(child: Text("Pizza",style: Theme.of(context).textTheme.headline5,),),
-                                  Tab(child: Text("Pizza",style: Theme.of(context).textTheme.headline5,),),
-                                  Tab(child: Text("Pizza",style: Theme.of(context).textTheme.headline5,),)
-                                ],
-                              ),
-                            ),
-                        SizedBox(
-                          height: 100,
-                          child: TabBarView(
-                              controller: _tabController,
-                                children: [
-                                     MenuList(totalPrice: restStore.activeCafe!.price!,
-                                     ),
-                                      MenuList(totalPrice: restStore.activeCafe!.price!,
-                                      ),
-                                      MenuList(totalPrice: restStore.activeCafe!.price!,
-                                      ),
-                                      MenuList(totalPrice: restStore.activeCafe!.price!,
-                                      ),
-                                      MenuList(totalPrice: restStore.activeCafe!.price!,
-                                      ),
-                                      MenuList(totalPrice: restStore.activeCafe!.price!,
-                                      ),
-                                      MenuList(totalPrice: restStore.activeCafe!.price!,
-                                      ),
+                        //  SizedBox(
+                        //    height: 50,
+                        //    width: 500,
+                        //    child: ListView.separated(
+                        //      scrollDirection: Axis.horizontal,
+                        //      separatorBuilder: (context,index)=>VerticalDivider(width: 40,thickness: 5.0,color: Colors.black,),
+                        //      itemCount: restStore.activeCafe!.category!.length,
+                        //        itemBuilder: (context,index){
+                        //        return  Text(restStore.activeCafe!.category![index].name.toString(),
+                        //          style: Theme.of(context).textTheme.headline3,
+                        //        );
+                        //        },
+                        //
+                        //    ),
+                        //  ),
+                        // SizedBox(
+                        //   height: 100,
+                        //   child: PageView(
+                        //     children: [
+                        //       Text(restStore.activeCafe!.category![0].variety![0].name),
+                        //       Text(restStore.activeCafe!.category![0].variety![1].name),
+                        //     ],
+                        //   ),
+                        // ),
+                        
+                      Container(
+                        height: 50,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            separatorBuilder: (context ,int index)=>VerticalDivider(width: 20,),
+                            itemCount: restStore.activeCafe!.category!.length,
+                            itemBuilder: (context,int index){
+                              return CustomTabbar(
+                                restStore: restStore,
+                                index: index,
+                                selectedTab: _selectedTab,
+                                tabIndex: index,
+                                onPressed: (){
+                                  changeTab(index);
+                                }
+
+                              ) ;
+                      },
+                                                       )
+                      )
 
 
-                                ]
-                            ),
-                        )
+
+
+
 
 
                       ],
@@ -223,77 +218,105 @@ class _IndividualCafeState extends State<IndividualCafe> with SingleTickerProvid
   }
 }
 
-class First extends StatelessWidget {
-  const First({Key? key, required RestStore store}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-    );
-  }
-}
+
+// class CustomTab extends StatelessWidget {
+//   const CustomTab({Key? key,required this.itemCount,}) : super(key: key);
+//   final int itemCount;
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     var restStore=Provider.of<RestStore>(context);
+//     return SizedBox(
+//       height: 100,
+//       width: 400,
+//       child: ListView.separated(
+//         separatorBuilder: (context ,index)=>VerticalDivider(width: 20,),
+//         scrollDirection: Axis.horizontal,
+//         itemCount:itemCount ,
+//           itemBuilder:(context ,index){
+//           return Tab(
+//             child: Text(restStore.activeCafe!.category![index].name.toString(),
+//             style: Theme.of(context).textTheme.headline6,
+//             ),
+//           );
+//           }
+//
+//       ),
+//     );
+//   }
+// }
 
 // ignore: must_be_immutable
-class MenuList extends StatelessWidget {
-   MenuList({Key? key,required this.totalPrice}) : super(key: key);
-
-   double totalPrice;
 
 
 
-  @override
-   Widget build(BuildContext context) {
-
-    var restStore = Provider.of<RestStore>(context, listen: false);
-    return  ListView.builder(
-      scrollDirection: Axis.vertical,
-        itemCount:7,
-        itemBuilder: (context,index){
-          return ListTile(
-              onTap: (){
-                 showDialog(
-                    context: context, builder: (context)=>AlertDialog(
-                   backgroundColor: AppColors.blue,
-                  actions: [
-                    Column(
-                      children: [
-                        Text(restStore.activeCafe!.items![index].keys.toString()),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            QntyIncDec(totalPrice: restStore.activeCafe!.price!.toDouble()),
-                            TextButton(
-                                onPressed: (){
-                                  restStore.setActiveCafe=restStore.restDetail[index];
-                                  restStore.addItemToCart(restStore.activeCafe!);
-                                  print(restStore.activeCafe!.items![index].keys);
-                                  Navigator.pop(context);
-                                },
-                                child: Text("Add To Cart") ),
-                          ],
-                        ),
-
-                      ],
-                    ),
-
-                  ],
-                )
-                );
-
-              },
-              title: Text(restStore.activeCafe!.items![index].keys.toString(),
-              style: Theme.of(context).textTheme.headline6,
-              ),
-              trailing: Text(
-                "Rs ${restStore.activeCafe!.items![index].values.toString() }/-",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            );
-        }
-    );
-  }
-}
+//
+// // ignore: must_be_immutable
+// class MenuList extends StatelessWidget {
+//    MenuList({Key? key,required this.totalPrice}) : super(key: key);
+//
+//    double totalPrice;
+//
+//
+//
+//   @override
+//    Widget build(BuildContext context) {
+//
+//     var restStore = Provider.of<RestStore>(context, listen: false);
+//     return  ListView.builder(
+//       scrollDirection: Axis.vertical,
+//         itemCount:7,
+//         itemBuilder: (context,index){
+//         final category=restStore.activeCafe!.category![index].variety![index];
+//           return ListTile(
+//               onTap: (){
+//                  showDialog(
+//                     context: context, builder: (context)=>AlertDialog(
+//                    backgroundColor: AppColors.blue,
+//                   actions: [
+//                     Column(
+//                       children: [
+//                         Text(category.name .toString()),
+//
+//                         Row(
+//                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                           children: [
+//                             QntyIncDec(
+//                                 index: index,
+//                                 totalPrice: restStore.activeCafe!.category![index].variety![index].price.toDouble()),
+//                             TextButton(
+//                                 onPressed: (){
+//                                   restStore.setActiveCafe=restStore.restDetail[index];
+//                                   restStore.addItemToCart(restStore.activeCafe!);
+//                                   print(restStore.activeCafe!.category![index].variety![index].price);
+//                                   Navigator.pop(context);
+//                                 },
+//                                 child: Text("Add To Cart") ),
+//                           ],
+//                         ),
+//
+//                       ],
+//                     ),
+//
+//                   ],
+//                 )
+//                 );
+//
+//               },
+//               title: Text(restStore.activeCafe!.category![index].variety![index].name.toString(),
+//               style: Theme.of(context).textTheme.headline6,
+//               ),
+//               trailing: Text(
+//                 "Rs ${restStore.activeCafe!.category![index].variety![index].price.toString() }/-",
+//                 style: Theme.of(context).textTheme.headline6,
+//               ),
+//             );
+//         }
+//     );
+//   }
+// }
 
 
 

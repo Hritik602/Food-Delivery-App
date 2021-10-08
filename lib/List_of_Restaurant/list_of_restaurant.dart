@@ -33,7 +33,7 @@ class ListOfRestaurant extends StatelessWidget {
                   // print(restStore.activeCafe);
                   restStore.setActiveCafe=(restStore.restDetail[index]);
 
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>IndividualCafe(index:index)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>IndividualCafe()));
                 },
                 child: Container(
                   decoration: BoxDecoration(

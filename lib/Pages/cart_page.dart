@@ -119,7 +119,7 @@ class CartScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(restStore.cart[index].items![index].keys.toString(),
+                          Text(restStore.cart[index].category![index].variety![index].name.toString(),
                             style: GoogleFonts.poppins(
                                 textStyle: TextStyle(
                                   fontSize: 25,
@@ -128,7 +128,7 @@ class CartScreen extends StatelessWidget {
                                 )
                             ),
                           ),
-                          Text("Price:             Rs.${restStore.cart[index].price!.toDouble()*restStore.cart[index].qntyofItem!}",
+                          Text("Price:             Rs.${restStore.cart[index].category![index].variety![index].price.toDouble()*restStore.cart[index].category![index].variety![index].quantity}",
                             style: GoogleFonts.poppins(
                                 textStyle: TextStyle(
                                   fontSize: 15,
@@ -138,7 +138,7 @@ class CartScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Quantity :        ${restStore.cart[index].qntyofItem!.toString()}",
+                            "Quantity :        ${restStore.cart[index].category![index].variety![index].quantity.toString()}",
                             style: GoogleFonts.poppins(
                                 textStyle: TextStyle(
                                   fontSize: 15,
@@ -207,8 +207,9 @@ class OrderIncDec extends StatelessWidget {
 
 // ignore: must_be_immutable
 class QntyIncDec extends StatelessWidget {
-  QntyIncDec({Key? key,required this.totalPrice}) : super(key: key);
+  QntyIncDec({Key? key,required this.totalPrice,required this.index}) : super(key: key);
   double totalPrice;
+  int index;
   @override
   Widget build(BuildContext context) {
     var restStore = Provider.of<RestStore>(context);
@@ -218,13 +219,13 @@ class QntyIncDec extends StatelessWidget {
         buttonSizeWidth: 30.0,
         minValue: 1,
         maxValue: 10,
-        initialValue: restStore.activeCafe!.qntyofItem!.toInt(),
+        initialValue: restStore.activeCafe!.category![index].variety![index].quantity.toInt(),
         decimalPlaces: 0,
         onChanged: (num value) {
-          totalPrice=(value*restStore.activeCafe!.price!.toDouble());
-          restStore.activeCafe!.qntyofItem=value.toInt();
-          restStore.updateQuantity();
-          restStore.totalPrice();
+          totalPrice=(value*restStore.activeCafe!.category![index].variety![index].price);
+          restStore.activeCafe!.category![index].variety![index].quantity=value.toInt();
+          restStore.updateQuantity(index);
+          restStore.totalPrice(index);
           print(totalPrice);
         },
       ),
