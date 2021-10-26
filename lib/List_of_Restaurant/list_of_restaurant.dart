@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:yummy_bites/Colors/appColors.dart';
+
 import 'package:yummy_bites/List_of_Restaurant/individual_cafe_detail.dart';
-import 'package:yummy_bites/Restaurant_Detail/restaurant_detail.dart';
+
 import 'package:yummy_bites/Store/restStore.dart';
 
 class ListOfRestaurant extends StatelessWidget {
@@ -17,12 +18,17 @@ class ListOfRestaurant extends StatelessWidget {
     var restStore = Provider.of<RestStore>(context,listen: false);
     Size size= MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 0.0,
+       backgroundColor:  Colors.white.withOpacity(0.1),
+        title: Text("Restaurant",style: TextStyle(color: Colors.black),),
+        centerTitle: true,
+      ),
       body: Container(
         padding: EdgeInsets.all(8.0),
         width: double.infinity,
         height: MediaQuery.of(context).size.height,
-        color: Colors.white,
+        color: Colors.black.withOpacity(0.1),
         child: ListView.separated(
             separatorBuilder: (context,index)=>Divider(thickness: 2.0,),
             itemCount: restStore.restDetail.length,
@@ -38,7 +44,7 @@ class ListOfRestaurant extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.white.withRed(225),
+                    color: Colors.white.withOpacity(0.9),
                   ),
                   width: double.infinity,
                   padding: EdgeInsets.all(3.0),
@@ -91,7 +97,8 @@ class BuildText extends StatelessWidget {
       style: GoogleFonts.poppins(
           textStyle: TextStyle(
               fontSize: iconSize,
-              fontWeight: FontWeight.w600
+              fontWeight: FontWeight.w600,
+            color: Colors.black,
           )
       ),
     );

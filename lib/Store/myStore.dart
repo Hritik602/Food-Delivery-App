@@ -1,7 +1,7 @@
 
 
 
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import 'package:yummy_bites/FoodItem/foodItem.dart';
 
@@ -45,12 +45,16 @@ import 'package:yummy_bites/FoodItem/foodItem.dart';
 
   MyStore() {
   _products = [
-    FoodItem( quantity: 1, name: "Burger ", price: 122.0, image: "asset/images/Burger.jpg",),
-    FoodItem( quantity: 1, name: "Sandwich", price: 400.0, image: "asset/images/Sandwich.jpg"),
     FoodItem( quantity: 1, name: "Pizza", price: 1000.0, image: "asset/images/Pizza.jpg"),
-    FoodItem( quantity: 1, name: "Pasta", price: 500.0, image: "asset/images/Pasta.jpg"),
     FoodItem( quantity: 1, name: "Burger", price: 240.0, image: "asset/images/Burger.jpg"),
+    FoodItem( quantity: 1, name: "Burger ", price: 122.0, image: "asset/images/Burger.jpg",),
+
+
+
     FoodItem( quantity: 1, name: "Burger", price: 199.0, image: "asset/images/Burger.jpg"),
+    FoodItem( quantity: 1, name: "Pasta", price: 500.0, image: "asset/images/Pasta.jpg"),
+    FoodItem( quantity: 1, name: "Sandwich", price: 400.0, image: "asset/images/Sandwich.jpg"),
+
   ];
 
   notifyListeners();

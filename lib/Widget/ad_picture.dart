@@ -35,25 +35,44 @@ class AdPic extends StatelessWidget {
                     fit: BoxFit.fill,
                     image: AssetImage(images[index].imagesPath!))),
             child: DecoratedBox(
+              position: DecorationPosition.foreground,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomRight,
+                  begin: Alignment.centerRight,
+                  end: Alignment.centerLeft,
                   colors: [
-                    AppColors.blue.withOpacity(0.7),
-                    Colors.yellow.withOpacity(0.9),
+                   Colors.red.withOpacity(0.1),
+                    Colors.yellow.withOpacity(0.1),
                   ]
                 )
               ),
-              child: Text("Get discount  30%  \n Choose a restaurant",
-              textAlign: TextAlign.end,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                    color: Colors.red.withOpacity(0.9),
-                  )
-                ),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "\t Get 30%*\n",
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                            fontSize: 29,
+                            color: Colors.white,
+                          )
+                        )
+                      ),
+                      TextSpan(
+                          text: "Discount",
+                          style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                fontSize: 29,
+                                color: Colors.amber,
+                              )
+                          )
+                      ),
+
+                    ]
+                  ),
+                )
               ),
             ),
           );

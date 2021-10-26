@@ -32,10 +32,16 @@ dependencies:
   carousel_slider: ^4.0.0
   flutter_elegant_number_button: ^0.0.6
   google_fonts: ^2.1.0
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.1
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/burger.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -62,6 +68,11 @@ flutter:
     - asset/images/Burger with Coke.jpg
     - asset/images/Pizza Wallpaper.jpeg.jpg
     - asset/images/Restaurant 2.jpg
+    - asset/images/Pizza for screen.jpg
+    - asset/images/Restaraunt 3.jpg
+    - asset/images/dinner-table.png
+    - asset/images/gamer.png
+    - asset/images/burger.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -37,7 +37,7 @@ class ItemDetailPage extends StatelessWidget {
       ):InkWell(
         onTap: (){
          print( (!store.cart.contains(store.activeProduct!)));
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>CartScreen(itemPrice: store.activeProduct!.price!.toDouble())));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>CartScreen()));
         },
         child: Button(store: store, text:"Go to Cart", width: 209, height: 49
         ),

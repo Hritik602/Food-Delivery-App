@@ -1,24 +1,18 @@
-
 import 'package:flutter/foundation.dart';
 
-class RestaurantDetail extends ChangeNotifier{
-  String ?restaurantName;
+class RestaurantDetail  {
+  String? restaurantName;
 
+  String? address;
+  String? imageProf;
+  List<Category>? category;
 
-  String ?address;
-  String ? imageProf;
-  List<Category>?  category;
-
-
-  RestaurantDetail({required this.restaurantName,required this.address, required this.imageProf,required this.category});
-  RestaurantDetail ? _activeCafe;
-  RestaurantDetail? get activeCafe=>_activeCafe;
-  set setActiveCafe(RestaurantDetail cafe) {
-    _activeCafe=cafe;
-  }
-
-  }
-
+  RestaurantDetail(
+      {required this.restaurantName,
+      required this.address,
+      required this.imageProf,
+      required this.category});
+}
 
 class Category {
   int? id;
@@ -43,4 +37,3 @@ class Variety {
     required this.price,
   });
 }
-

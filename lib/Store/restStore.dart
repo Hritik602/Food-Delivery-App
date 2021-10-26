@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
-import 'package:yummy_bites/FoodItem/foodItem.dart';
 import 'package:yummy_bites/Restaurant_Detail/restaurant_detail.dart';
 
 class RestStore extends ChangeNotifier{
@@ -9,27 +7,32 @@ class RestStore extends ChangeNotifier{
   List<RestaurantDetail> _cart = [];
   RestaurantDetail ? _activeCafe;
   RestaurantDetail? get activeCafe=>_activeCafe;
-  List<RestaurantDetail> get product => _restDetail;
+  List<RestaurantDetail> get detail => _restDetail;
   List<RestaurantDetail> get cart => _cart;
   set setActiveCafe(RestaurantDetail cafe) {
     _activeCafe=cafe;
 
   }
-  addItemToCart(RestaurantDetail added) {
+  addItemToCart(RestaurantDetail added ) {
+    if(_cart.contains(added)){
+    // ignore: unnecessary_statements
+
+    }
     _cart.add(added);
+    notifyListeners();
   }
   removeItemFromCart(RestaurantDetail removed) {
     _cart.remove(removed);
     notifyListeners();
   }
 
-  updateQuantity(int index) {
+  updateQuantity({required int catIndex, required int varietyIndex}) {
     // ignore: unnecessary_statements
-    activeCafe!.category![index].variety![index].quantity=1;
+    activeCafe!.category![catIndex].variety![varietyIndex].quantity;
     notifyListeners();
   }
-  totalPrice(int index){
-    var total=(activeCafe!.category![index].variety![index].price*activeCafe!.category![index].variety![index].quantity);
+  totalPrice({required int catIndex, required int varietyIndex}){
+    var total=(activeCafe!.category![catIndex].variety![varietyIndex].price*activeCafe!.category![catIndex].variety![varietyIndex].quantity);
     // ignore: unnecessary_statements
     total;
     notifyListeners();
@@ -68,8 +71,8 @@ RestStore(){
         Category(
           name: "Mo:Mo",
           variety: [
-            Variety(id: 1,name:"Cheese Pizza" ,quantity:1 ,price:150 ),
-            Variety(id: 2, name: "Veg Pizza", quantity: 1, price: 200)
+            Variety(id: 1,name:"Chicken Mo:MO" ,quantity:1 ,price:150 ),
+            Variety(id: 2, name: "Veg Mo:Mo", quantity: 1, price: 200)
           ],
         ),
         Category(name: "Sandwich",
